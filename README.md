@@ -1,4 +1,5 @@
-# Actividades Javascript curso 21-22
+# Actividades Javascript del módulo DWEC
+## **Por JesusBautista**
 
 -Actividades del módulo DWEC del IES Conselleria *por Jesús Bautista*
 
