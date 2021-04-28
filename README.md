@@ -1,13 +1,11 @@
 # Actividades Javascript del módulo DWEC
-## **Por JesusBautista**
-
--Actividades del módulo DWEC del IES Conselleria *por Jesús Bautista*
+### **Por JesusBautista**
 
 -En este repositorio publicaré las actividades. 
 
 -Cada UD tiene un directorio diferente, dentro de este las actividades.
 
--Es un repositorio público, podeis copiarlo con *git clone https://github.com/DWEC-CONSE-21-22/actividades-21-22.git* . Cuando avise que he subido actividades, se pude sincronizar con *git pull*
+-Es un repositorio público, podeis copiarlo con *git clone https://github.com/DWEC-IESConselleria/actividades-js.git* . Cuando avise que he subido actividades, se pude sincronizar con *git pull*
 
 -Recomiendo que creeis vuestro propio repositorio, ir copiando y pegando del repositorio de actividades al vuestro, donde esará vuestro código.
 
