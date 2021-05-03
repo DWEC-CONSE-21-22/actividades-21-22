@@ -16,9 +16,6 @@ function funcion_ajax(){
                 console.log(this.value);        
                 var cp = this.value;
                 document.getElementById("cp").innerText=cp;
-
-
-
             });
 
             document.getElementById("contenido").appendChild(select);

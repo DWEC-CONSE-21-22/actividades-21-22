@@ -1,8 +1,7 @@
 $(document).ready(function(){
     console.log("jquery ok");
 ///////////////////////////
-    $.ajax({
-       
+    $.ajax({   
         url : 'productos.json',
         type : 'GET',
         dataType : 'json',
@@ -17,7 +16,7 @@ $(document).ready(function(){
         }    
     });
 //////////////////////////////
-    $("#producto").change(function(){
+    $("#producto").on("change",function(){
         $("#puni").val($("#producto :selected").val());
     });
 ///////////////////////////////////////
@@ -27,7 +26,7 @@ $(document).ready(function(){
         var puni=+$("#producto :selected").val()
         $("#tabla tbody").append("<tr><td>"+nombre+"</td><td>"+cantidad+"</td><td>"+puni+"</td><td class='ptotal' >"+cantidad * puni+ "</td><td><button class='borrar'>Borrar</button></td></tr>");
        
-        $(".borrar").click(function(){
+        $(".borrar").on("click",function(){
            $(this).parent().parent().remove();      
             actualizar();
         });
@@ -37,7 +36,6 @@ $(document).ready(function(){
 });
 
 function actualizar(){
-
     var total=0;
     $(".ptotal").each(function(){
         total+=parseFloat($(this).text());

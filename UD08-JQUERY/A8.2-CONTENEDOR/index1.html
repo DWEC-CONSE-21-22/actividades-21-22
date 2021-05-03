@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+    <style>
+        ul.gestor-llistes {
+        list-style-type: none;
+        padding: 0;
+        width: 200px;
+        float: left;
+        margin: 5px;
+        }
+         
+        ul.gestor-llistes div.barra-eines {
+        border-bottom: 1px gray dotted;
+        padding-bottom: 2px;
+        }
+        </style>
+         
+        <ul id="Nom">
+        </ul>
+        <ul id="Generic">
+        </ul>
+        <ul id="Curs">
+        </ul>
+         
+        <script>
+        $(document).ready(function() {
+        $('ul#Nom').gestionar('Noms', 'Introdueix un nom');
+        $('ul#Curs').gestionar('Curs', 'Introdueix un curs');
+        $('ul#Generic').gestionar();
+        });
+         
+        $.fn.gestionar = function(titol, placeholder) {
+        if (!titol) {
+        titol = "Gestor de llistes";
+        }
+        if (!placeholder) {
+        placeholder = "Escriu aquí..."
+        }
+         
+        this.each(function() {
+        var $contenidor = $(this);
+        $contenidor.addClass('gestor-llistes');
+         
+        var $barraEines = $('<div>' + titol + ' </div>');
+        $barraEines.addClass('barra-eines');
+         
+        var $botoMes = $('<button>+</button>');
+        var $botoMenys = $('<button>-</button>');
+         
+        $barraEines.append($botoMes);
+        $barraEines.append($botoMenys);
+         
+        $contenidor.prepend($barraEines);
+         
+        $botoMes.click(function() {
+        var $quadre = $('<li><input type="text" placeholder="' + placeholder + '"/></li>');
+         
+        $quadre.on('change focusout', function() {
+        var valor = $quadre.find('input').val();
+         
+        if (valor) {
+        $quadre.html(valor);
+        $botoMes.trigger('click');
+        } else {
+        // Si no hi ha cap contingut s'elimina
+        $quadre.remove();
+        }
+        });
+        $contenidor.append($quadre);
+        $quadre.find('input').focus();
+        });
+         
+        $botoMenys.click(function() {
+        $contenidor.find('li:last-child').remove();
+        });
+        });
+         
+        }
+        </script>
+</html>

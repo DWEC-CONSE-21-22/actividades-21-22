@@ -1,4 +1,4 @@
-# Actividad 7.4 votar
+# Actividad 7.3 LLamadas AJAX a php
 
 Dado el programa php/UD7-3AJAX.php, y el programa ajax.js, crea el fichero index1.html para que:
 
