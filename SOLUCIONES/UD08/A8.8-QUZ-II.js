@@ -1,62 +1,76 @@
-$(document).ready(function(){
-    console.log("juery ok");
-    cargo_preguntas(); // cargo las preguntas por ajax
-    $("#ok").on("click",function(){  // si ok
-        compruebo_preguntas(); // compruebo preguntas
-        clearTimeout(temporizador); // paro temporizador
+var temporizador
+$(document).ready(function () {
+    console.log("jquery ok");
+    cargo_preguntas();   // llamada ajax para cargar las preguntas
+    $("#ok").on("click", function () {  // evcent handler del boton
+        compruebo_preguntas()
     });
-    $("#borrar").on("click",function(){ // borrar todo
-        $("#preguntas").html(""); // limpio articles
-        $("#acertadas").html("");
+    $("#borrar").on("click", function () { // borrar todo
+        $("#preguntas").empty(); // limpio articles
+        $("#acertadas").empty();
+        $("#tiempo").empty();
         cargo_preguntas(); // cargo preguntas de nuevo
+        temporizar();
     });
-    var temp=0;
-    var temporizador = setInterval(function(){   // creo el temporizador
-        temp++;   // aumento el temp y lo saco por pantalla.
-        $("#tiempo").html("Tiempo :"+temp);
-    },100); // cada decima de segundo
+
+    temporizar();
+
+
+
 });
 
-function cargo_preguntas(){
-      $.ajax({    //llamada ajax, recojo preguntas.json
-        url: "preguntas.json",
-        type: "POST",
-        dataType: "json",
-    })
-    .done(function(datos){
-            for (i=0;i<datos.preguntas.length; i++){ // añado un id para cambiar color 
-                $("#preguntas").append("<div id='pregunta"+i+"'>"+datos.preguntas[i].pregunta +"</div>");
-                $.each(datos.preguntas[i].respuesta, function(key, value){ //itero por clave-valor
-                    var radio="<input type='radio' class='respuesta"+i+"' name='respuesta"+i+"' value='"+key+"'>"+key+" = "+ value+" </input>";
-                    $("#preguntas").append(radio);   //añado una clase para buscar el :checked
-                });
-            }        
-    })
-    .fail(function( jqXHR, textStatus, errorThrown ) {
-        console.log( "La solicitud ha fallado: " +  textStatus + errorThrown);
-   });
+function compruebo_preguntas() {
+    var correctas = 0;
+    $.ajax({
+        url: 'preguntas.json',
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            respuesta.preguntas.forEach(function (pregunta, index) { // preguntas es un array. itero con preguntas y me gurado el index
+                var correcta = pregunta.correcta;
+                var elegida = $("input[name='" + index + "']:checked").val();
+                console.log(correcta + " - " + elegida);
+                if (correcta == elegida) {
+                    $("#pregunta" + index).css("background-color", "green");
+                    correcta++;
+                } else {
+                    $("#pregunta" + index).css("background-color", "red");
+                }
+                $("#acertadas").html("Acertadas :" + correctas);
+                clearInterval(temporizador);//paro el temporizador
+            })
+        },
+        error: function (xhr, status) {
+            // código a ejecutar si la petición falla;     
+            alert('Disculpe, existió un problema');
+        }
+    });
 }
-function compruebo_preguntas(){
-     $.ajax({  //llamada ajax, recojo preguntas.json 
-        url: "preguntas.json",
-        type: "POST",
-        dataType: "json",
-    })
-    .done(function(datos){
-        var correctas=0;
-        for (i=0;i<datos.preguntas.length; i++){
-            var correcta = datos.preguntas[i].correcta; //correcta
-            var elegida = $(".respuesta"+i+":checked").val(); //elegido
-            if(correcta == elegida ){
-                $("#pregunta"+i).css({"background-color" : "green"}); //fondo verde
-                correctas ++;
-            }else{
-                $("#pregunta"+i).css({"background-color" : "red"});
-            }
-        };
-        $("#acertadas").html("Acertadas :"+correctas);
-    })
-    .fail(function( jqXHR, textStatus, errorThrown ) {
-        console.log( "La solicitud ha fallado: " +  textStatus + errorThrown);
-   });
+
+function cargo_preguntas() {
+    $.ajax({
+        url: 'preguntas.json',
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            respuesta.preguntas.forEach(function (pregunta, index) {// preguntas es un array. itero con preguntas y me gurado el index
+                $("#preguntas").append("<div id='pregunta" + index + "'>" + pregunta.pregunta + "</div>") // al div le doy un id con el index
+                for (key in pregunta.respuesta) {  // respuestas almacenado como clave-valor
+                    $("#preguntas").append("<input type='radio' name=" + index + " value=" + key + ">" + key + " = " + pregunta.respuesta[key] + "</input>")
+                }                                         //para que el radio funcione bien, hay que darle el mismo name al grupo de respuestas
+            });
+        },
+        error: function (xhr, status) {
+            // código a ejecutar si la petición falla;     
+            alert('Disculpe, existió un problema');
+        }
+    });
+}
+
+function temporizar() {
+    var temp = 0;
+    temporizador = setInterval(function () {   // creo el temporizador
+        temp++;   // aumento el temp y lo saco por pantalla.
+        $("#tiempo").html("Tiempo :" + temp);
+    }, 100); // cada decima de segundo   
 }
