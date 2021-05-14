@@ -4,7 +4,7 @@
 
 * Para ello sacará por pantalla las imágenes de los billetes tantas veces como unidades sean, por ejemplo 1015 euros, 2 imágenes de billete de quinientos una de diez y una de cinco
 
-* Utiliza funciones para no repetir código, se pude hacer con 15 lineas de código.
+* Utiliza funciones para **no repetir código**, se pude hacer con 15 lineas de código.
 
 
 

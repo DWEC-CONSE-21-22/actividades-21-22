@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <script src="../../SOLUCIONES/UD09/A9.1-VALIDAR.js"></script>
+     </head>
+     <body>
+          <form action="test.php" method="GET" onsubmit="return validar();">
+               <input
+                    name="dni"
+                    id="dni"
+                    type="text"
+                    minlength="9"
+                    maxlength="9"
+                    size="9"
+                    placeholder="DNI"
+                    pattern="^\d{8}[a-zA-Z]"
+               />
+               <button>Enviar</button>
+          </form>
+     </body>
+</html>

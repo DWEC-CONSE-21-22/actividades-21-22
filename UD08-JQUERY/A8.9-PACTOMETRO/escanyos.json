@@ -1,0 +1,29 @@
+{
+    "partidos": [
+        {
+            "nombre": "PSOE",
+            "color": "red",
+            "escanyos": 120
+        },
+        {
+            "nombre": "PP",
+            "color": "blue",
+            "escanyos": 90
+        },
+        {
+            "nombre": "BOX",
+            "color": "green",
+            "escanyos": 61
+        },
+        {
+            "nombre": "UP",
+            "color": "purple",
+            "escanyos": 45
+        },
+        {
+            "nombre": "otros",
+            "color": "lightgrey",
+            "escanyos": 34
+        }
+    ]
+}
