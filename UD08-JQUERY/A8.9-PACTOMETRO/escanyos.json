@@ -1,6 +1,11 @@
 {
     "partidos": [
         {
+            "nombre": "Elige...",
+            "color": "",
+            "escanyos": 0
+        },
+        {
             "nombre": "PSOE",
             "color": "red",
             "escanyos": 120
