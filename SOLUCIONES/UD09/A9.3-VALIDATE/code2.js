@@ -4,6 +4,8 @@ $.validator.setDefaults({
     }
 });
 
+
+
 $(document).ready(function(){
     console.log("jquery ok");
     $.validator.addMethod("valueNotEquals", function(value, element, arg){

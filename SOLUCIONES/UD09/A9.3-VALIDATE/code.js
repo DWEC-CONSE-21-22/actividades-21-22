@@ -5,7 +5,7 @@ window.onload= function(){
 
 
 function validarFormulario(evento){
-    evento.preventDefault();
+    evento.preventDefault();//evitamos que se envie
     var form_ok=true;
 
     var txtNombre = document.getElementById('nombre').value;
@@ -16,6 +16,8 @@ function validarFormulario(evento){
     var chkEstado = document.getElementById('checkBox');
     var rbtEstado = document.getElementsByName('radioButton');
     var rbtEstado_elegido = null;
+    var pass1 = document.getElementById('password').value;
+    var pass2 = document.getElementById('confirm_password').value;
  
     var banderaRBTN = false;
  
@@ -64,6 +66,13 @@ function validarFormulario(evento){
     }
     if(!banderaRBTN){
       alert('ERROR: Debe elegir una opción de radio button');
+      form_ok=false;
+    }
+
+     //Test password
+     console.log(pass1 + pass2);
+     if(pass1 == null || pass1.length == 0 || pass1!=pass2){
+      alert('ERROR: Password tiene que ser igual');
       form_ok=false;
     }
  
