@@ -12,6 +12,10 @@ Os paso los documentos necesariops para la aplicacion menos el javascript.
 
 ![Captura de pantalla 2021-05-19 185027](https://user-images.githubusercontent.com/70903768/118853299-e4225e80-b8d3-11eb-8aa3-6903820d08e3.jpg)
 
+- En el fichero estilos.css hay estilos para darle el formato correcto:
+
+![2Captura](https://user-images.githubusercontent.com/70903768/119355574-b8bdbc00-bca5-11eb-8fdc-8897f07e841f.PNG)
+
 
 - Al clickar en el "+" se añade este producto al carrito. Ese se actualiza con cada uno de los elementos guardados y se guarda en local storage. De manera que al volver a cargar la pagina, se ha mantenido el carrito
    - Se va actualizando la suma total del carrito
