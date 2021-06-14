@@ -20,7 +20,7 @@ $(document).ready(function () {
 });
 
 function compruebo_preguntas() {
-    var correctas = 0;
+    var contador_acertadas = 0;
     $.ajax({
         url: 'preguntas.json',
         type: 'GET',
@@ -28,15 +28,15 @@ function compruebo_preguntas() {
         success: function (respuesta) {
             respuesta.preguntas.forEach(function (pregunta, index) { // preguntas es un array. itero con preguntas y me gurado el index
                 var correcta = pregunta.correcta;
-                var elegida = $("input[name='" + index + "']:checked").val();
+                var elegida = $("input[name='" + index + "']:checked").val(); // para el input que estamos comprobando, me guardo el valor del radio que esta elegido (cheked)
                 console.log(correcta + " - " + elegida);
                 if (correcta == elegida) {
                     $("#pregunta" + index).css("background-color", "green");
-                    correcta++;
+                    contador_acertadas ++;
                 } else {
                     $("#pregunta" + index).css("background-color", "red");
                 }
-                $("#acertadas").html("Acertadas :" + correctas);
+                $("#acertadas").html("Acertadas :" + contador_acertadas);
                 clearInterval(temporizador);//paro el temporizador
             })
         },
